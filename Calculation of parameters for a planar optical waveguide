@@ -100,5 +100,5 @@ while 0==0:
     else:
         print('Change material of up and bottom of planar system and try again')
         continue
-
-        continue
+        
+        
