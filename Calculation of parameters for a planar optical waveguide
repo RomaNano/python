@@ -1,0 +1,104 @@
+import math
+import os
+project=str(input('Hello, everyone!\nThis program can help define satisfied materials and calculate the angle of light inputting\nAt first,please,call the project\n'))
+while 0==0:
+    bottom_name=str(input('Now, we should define areas, which surround the core of fiber\nEnter the bottom-material\n'))
+    n1=float(input('Enter the refrative index of that bottom\nn1= '))
+    up_name=str(input('Enter the up-material\n'))
+    n2=float(input('Enter the refrative index of that up\nn2= '))
+    core_name=str(input('Finally, Enter the core material\n'))
+    n3=float(input('Enter the refrative index of that core\nn3= '))
+    wavelength=(10**(-9))*float(input('This program can calculate only for one wavelength. Therefore, now you need enter the needed wavelength in nm.\nwavelenght='))
+    if n3>n1>=n2:
+        print('The conditions for total internal reflection are satisfied')
+        print(n1,n2,n3)
+        Tetta=math.degrees(math.asin(n1/n3))
+        print('The angle total internal reflection is Tetta\nTetta= ',Tetta)
+        Alfa=math.degrees(math.asin((math.sin(math.radians(90-Tetta)*n3)/1)))
+        print('The ligth inputting angle is Alfa\nAlfa= ',Alfa)
+        n_ef = n3 * math.sin(math.radians(Tetta))
+        print('The effective refractive index\nn_ef=',n_ef)
+        h = ((1 / (2 * math.pi * ((n3 ** 2 - n1 ** 2) ** 1 / 2))) *
+             (((n1 ** 2 - n2 ** 2) / (n3 ** 2 - n1 ** 2))) ** 1 / 2) * wavelength
+        print('The minimum thickness of planar system\nh=', str(h),'\n')
+        print('The End.\n Good luck and have a nice day!')
+
+        os.chdir(r"C:\Users\yakun\Desktop\b4177c\python")
+        data=open('Calc optic.txt','w')
+        data.write(project+'\n')
+        data.write(bottom_name+'='+str(n1)+'\n')
+        data.write(up_name+'='+str(n2)+'\n')
+        data.write(core_name+'='+str(n3)+'\n')
+        data.write('wavelength=' + str(wavelength/(10**(-9)))+'nm' + '\n')
+        data.write('Tetta= '+str(Tetta)+'\n')
+        data.write('Alfa= '+str(Alfa)+'\n')
+        data.write('The effective refractive index=' + str(n_ef)+ '\n')
+        data.write('The minimum thickness of planar system=' + str(h) + '\n')
+        data.close()
+        Out=input('Press ENTER to exit')
+        break
+    elif n3<=n1>=n2:
+        while 0==0:
+            print('The conditions for total internal reflection are NOT satisfied\nYou have to modify the core by something(for instance- by nanoparticles) or change the core material.\n')
+            chose=str(input('Please, enter the number 1 if you want to change return to the beginning and change the core material. However, if you want to modify with nanoparticles, please, enter the number 2\n'))
+            if chose=='1':
+                print('You have chosen changing the core material.\n')
+                break
+            elif chose!='1' and chose!='2':
+                print('Wrong! Please, enter the number 1 or 2.  Nothing else.')
+                continue
+            else:
+                while 0 == 0:
+                    mod_name=str(input('Enter modifying material\n'))
+                    n_mod=float(input('Enter the refractive index of modifying nanoparticles\nn_mod= '))
+                    n3_s=0 #n3_s- Satisfied refractive index
+                    while n3_s <= n1:
+                        n3_s += 0.0011
+                    n3_s2=n3_s- 0.001+0.1 #n3_s- Satisfied refractive index(the highest)
+                    print('Now, the conditions for total internal reflection will be satisfied\nIf you enhance the refractive index of core to index between ',n3_s, 'and ',n3_s2,'\nPlease Enter the choosing index')
+                    n_new = 0
+                    while n_new < n3_s or n_new > n3_s2:
+                        if n_new==0:
+                            n_new = float(input())
+                        else:
+                            print('Wrong! Try again')
+                            n_new = float(input())
+                    print('Good job! Based on given information, it is necessary to calculate concentration of nanoparticles in the core')
+                    x=(((n_new/n3)-1)/((n_mod/n3)-1))*100
+                    print('Quntity of nanoparticles have to be ',x,'%')
+                    if x>=25:
+                        print('Wrong modifying material! The amount of nanoparticles have to be less than 20%. So, please, try to enter another one.\n ')
+                        continue
+                    else:
+                        break
+                Tetta = math.degrees(math.asin(n1/n_new))
+                print('The angle of total internal reflection is Tetta\nTetta= ', Tetta)
+                Alfa = math.degrees(math.asin((math.sin(math.radians(90 - Tetta) * n_new) /1)))
+                print('The ligth inputting angle is Alfa\nAlfa= ', Alfa)
+                n_ef = n_new * math.sin(math.radians(Tetta))
+                print('The effective refractive index\nn_ef=', n_ef)
+                h = ((1 / (2 * math.pi * ((n_new ** 2 - n1 ** 2) ** 1 / 2))) *
+                     (((n1 ** 2 - n2 ** 2) / (n_new ** 2 - n1 ** 2))) ** 1 / 2) * wavelength
+                print('The minimum thickness of planar system\nh=', str(h), '\n')
+                print('The End.\n Good luck and have a nice day!')
+
+                os.chdir(r"C:\Users\yakun\Desktop\b4177c\python")
+                data = open('Calc optic.txt', 'w')
+                data.write(project+'\n')
+                data.write(bottom_name + '=' + str(n1)+'\n')
+                data.write(up_name + '=' + str(n2)+'\n')
+                data.write(core_name + '=' + str(n_new)+'\n')
+                data.write('wavelength=' + str(wavelength / (10 ** (-9))) + 'nm' + '\n')
+                data.write('Tetta= ' + str(Tetta) + '\n')
+                data.write('Alfa= ' + str(Alfa) + '\n')
+                data.write('The effective refractive index=' + str(n_ef) + '\n')
+                data.write('The minimum thickness of planar system=' + str(h) + '\n')
+                data.close()
+                Out = input('Press ENTER to exit')
+                break
+        continue
+    else:
+        print('Change material of up and bottom of planar system and try again')
+        continue
+
+        continue
