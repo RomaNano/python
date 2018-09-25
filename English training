@@ -1,5 +1,7 @@
 
 import random
+print('Hi! It is the program for preparing for the English exam.'
+      '\nEnjoy!\n(c)Romanano\n\nLet\'s start!\n')
 word=[['book','article','essay','lecture','dissertation','project','assignment'],
       ['research','investigation','inquiry','insight'],
       ['analysis','examination', 'study','basis','idea','part','lack','exploration','means'],
@@ -20,7 +22,7 @@ d=dict()
 for i in range(len(word)) :
       d.update(dict.fromkeys(word[i], prep[i]))
 
-print('Now, input right answer','\n''If you want to exit input \'stop\'')
+print('Now, enter the correct preposition','\n''If you want to exit enter \'stop\'')
 while 0==0:
       rand=random.randint(0,len(word)-1)
 
@@ -28,7 +30,7 @@ while 0==0:
       print('-'*20,'\n'+b)
       a=str(input())
       if a in ','.join(d[b]):
-            print('Correct ancwer')
+            print('Correct answer')
             print("All possible answers : "+','.join(d[b]))
       elif a=='stop':
             break
@@ -36,4 +38,5 @@ while 0==0:
             print('Wrong')
             print("All possible answers : " + ','.join(d[b]))
 
-print('Have a nice day and good luck on Wednesday!')
+print('Have a nice day and good luck on Wednesday!\nPress Enter for exit')
+print(input())
