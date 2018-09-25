@@ -1,0 +1,39 @@
+
+import random
+word=[['book','article','essay','lecture','dissertation','project','assignment'],
+      ['research','investigation','inquiry','insight'],
+      ['analysis','examination', 'study','basis','idea','part','lack','exploration','means'],
+      ['problem','difficult'],
+      ['reason','motivation','rationale','need','case','preference'],
+      ['look','attempt','point','age'],
+      ['changes','differences','increase','decrease'],
+      ['work','influence','emphasis','effect'],
+      ['relation','approach','response','attention'],
+      ['attitude','tendency','move','progress'],
+      ['principle','assumptions','logic'],
+      ['relationship','difference','distinction']]
+
+prep=[['about','on'],['into'],['of'],['of','with'],['for'],['at'],['in'],['on'],
+      ['to'],['to','towards'],['behind'],['between']]
+d=dict()
+
+for i in range(len(word)) :
+      d.update(dict.fromkeys(word[i], prep[i]))
+
+print('Now, input right answer','\n''If you want to exit input \'stop\'')
+while 0==0:
+      rand=random.randint(0,len(word)-1)
+
+      b=word[rand][random.randint(0,len(word[rand])-1)]  #Getting a random key
+      print('-'*20,'\n'+b)
+      a=str(input())
+      if a in ','.join(d[b]):
+            print('Correct ancwer')
+            print("All possible answers : "+','.join(d[b]))
+      elif a=='stop':
+            break
+      else:
+            print('Wrong')
+            print("All possible answers : " + ','.join(d[b]))
+
+print('Have a nice day and good luck on Wednesday!')
